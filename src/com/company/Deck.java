@@ -24,21 +24,43 @@ public class Deck {
 
         public boolean isEmpty()
         {
-
+            if (unDealt.size()==0) {
+                return true;
+            }
+            else return false;
         }
 
         public int size()
         {
-
+            return unDealt.size();
         }
 
-        public void deal()
+    public Card deal()
+    {
+        if(unDealt.size()>0)
         {
-
+            Card temp = unDealt.get(0);
+            Dealt.add(temp);
+            unDealt.remove(0);
+            return temp;
         }
+        return null;
+    }
 
-        public void shuffle()
+    public void shuffle()
+    {
+        unDealt.addAll(Dealt);
+        while(Dealt.size()>0)
         {
+            Dealt.remove(0);
+        }
+        for(int i=unDealt.size()-1;i>0;i--)
+        {
+            int pos = (int) (Math.random() * i);
+            Card temp = unDealt.get(i);
+            unDealt.set(i,unDealt.get(i));
+            unDealt.set(pos,temp);
 
         }
+    }
 }
